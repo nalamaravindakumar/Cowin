@@ -1,0 +1,5 @@
+package com.cowin.repository;
+
+public class VaccinatedRepository {
+
+}

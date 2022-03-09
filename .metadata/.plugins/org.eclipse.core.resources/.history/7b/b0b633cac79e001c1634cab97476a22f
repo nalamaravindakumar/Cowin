@@ -1,0 +1,5 @@
+package com.cowin.testservice;
+
+public class VaccinatedTest {
+
+}

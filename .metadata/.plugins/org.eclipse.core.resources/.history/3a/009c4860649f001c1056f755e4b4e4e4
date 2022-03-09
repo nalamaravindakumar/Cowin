@@ -1,0 +1,10 @@
+package com.cowin.exception;
+
+public class VaccinatedDetailsNotFoundByDoseNumberException extends RuntimeException {
+	public VaccinatedDetailsNotFoundByDoseNumberException(String msg) {
+
+		super(msg);
+	}
+
+
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="VaccinatedTest" project="Vaccinated" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="com.cowin.testservice.VaccinatedTest" time="0.001" displayname="VaccinatedTest" uniqueid="[engine:junit-jupiter]/[class:com.cowin.testservice.VaccinatedTest]">
+    <testcase name="testGetVaccinatedDetailsByIdNotFound" classname="com.cowin.testservice.VaccinatedTest" time="0.001" displayname="testGetVaccinatedDetailsByIdNotFound()" uniqueid="[engine:junit-jupiter]/[class:com.cowin.testservice.VaccinatedTest]/[method:testGetVaccinatedDetailsByIdNotFound()]"/>
+    <testcase name="testGetVaccinatedById" classname="com.cowin.testservice.VaccinatedTest" time="0.0" displayname="testGetVaccinatedById()" uniqueid="[engine:junit-jupiter]/[class:com.cowin.testservice.VaccinatedTest]/[method:testGetVaccinatedById()]"/>
+  </testsuite>
+</testrun>

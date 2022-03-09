@@ -1,0 +1,5 @@
+package com.cowin.exception;
+
+public class GlobalExceptionHandler {
+
+}

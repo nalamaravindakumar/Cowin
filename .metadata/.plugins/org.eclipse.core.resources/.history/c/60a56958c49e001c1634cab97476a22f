@@ -1,0 +1,73 @@
+package com.cowin.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cowin.entity.VaccinatedEntity;
+import com.cowin.exception.VaccinatedDetailsNotFoundException;
+import com.cowin.model.Appointment;
+import com.cowin.model.Vaccinated;
+import com.cowin.model.Vaccine;
+import com.cowin.repository.VaccinatedRepository;
+import com.cowin.util.EntityModelUtil;
+
+@Service
+public class VaccinatedServiceImpl implements VaccinatedService {
+
+	@Autowired
+	private VaccinatedRepository vaccinatedRepository;
+
+	@Autowired
+	private AppointmentService appointmentService;
+	@Autowired
+	private VaccineService vaccineService;
+
+	@Override
+	public Vaccinated saveVaccinated(Vaccinated vaccinated) {
+
+	    VaccinatedEntity vaccinatedEntity;
+	    Appointment appointment= appointmentService.getAppointmentDetails(vaccinatedEntity.getAppointmentId());
+		vaccinatedEntity.setDoseNumber(appointment.getDoseNumber());
+		vaccinatedEntity.setCenterId(appointment.getCenterId());
+		
+		Vaccine vaccine= vaccineService.getVaccineDetails(vaccinatedEntity.getVaccineId());
+		vaccinatedEntity.setVaccineId(vaccine.getVaccineId());
+		vaccinatedEntity.setVaccineName(vaccine.getVaccineName());	
+			
+		VaccinatedEntity vaccinatedEntity = vaccinatedRepository
+				.save(EntityModelUtil.vaccinatedModelToEntity(vaccinated));
+
+		return EntityModelUtil.vaccinatedEntityToModel(vaccinatedEntity);
+	}
+
+	@Override
+
+	public List<Vaccinated> getAllVaccinatedDetails() {
+
+		List<VaccinatedEntity> vaccinated = vaccinatedRepository.findAll();
+
+		return EntityModelUtil.vaccinatedEntityToModelList(vaccinated);
+	}
+
+	@Override
+	public List<Vaccinated> getAllVaccinatedDetailsByDose(int doseNumber) {
+
+		// TODO Auto-generated method stub
+		List<VaccinatedEntity> vaccinatedList = vaccinatedRepository.findByDoseNumber(doseNumber);
+		return EntityModelUtil.vaccinatedEntityToModelList(vaccinatedList);
+	}
+
+	@Override
+	public Vaccinated getVaccinatedDetailsById(int vaccinatedId) throws VaccinatedDetailsNotFoundException {
+
+		Optional<VaccinatedEntity> optionalVaccinated = vaccinatedRepository.findById(vaccinatedId);
+
+		if (optionalVaccinated.isEmpty()) {
+			throw new VaccinatedDetailsNotFoundException("Sorry! vaccinatedId is not existing with id: " + vaccinatedId);
+		}
+		return EntityModelUtil.vaccinatedEntityToModel(optionalVaccinated.get());
+	}
+}

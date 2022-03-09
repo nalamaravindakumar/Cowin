@@ -1,0 +1,5 @@
+package com.cowin.controller;
+
+public class VaccinatedController {
+
+}
